@@ -1,54 +1,57 @@
 package model;
 
-public class Flight {
+import javafx.beans.property.StringProperty;
+
+public class Flight implements Comparable<Flight>{
 	
 	//------------------------------
 	// Attributes
 	//------------------------------
-	private String date;
-	private String hour;
+	private CustomDate customDate;
+	private CustomHour hour;
 	private String airline;
-	private int flightNumber;
+	private String flightNumber;
 	private String destinationCity;
-	private String gate;
+	private int gate;
 	
 	//------------------------------
 	// Constructor 
 	//------------------------------
-	public Flight(String date, String hour, String airline, int flightNumber, String gate) {
-		this.date         = date;
-		this.hour         = hour;
-		this.airline      = airline;
-		this.flightNumber = flightNumber;
-		this.gate         = gate; 
+	public Flight(CustomDate customDate, CustomHour hour, String airline, String destinationCity, String flightNumber, int gate) {
+		this.customDate      = customDate;
+		this.hour            = hour;
+		this.airline         = airline;
+		this.destinationCity = destinationCity;
+		this.flightNumber    = flightNumber;
+		this.gate            = gate; 
 	}
 	
 	
 	//------------------------------
 	// Getters and Setters 
 	//------------------------------
-	public String getDate() {
-		return date;
+	public CustomDate getDate() {
+		return customDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(CustomDate date) {
+		this.customDate = date;
 	}
-	public String getHour() {
+	public CustomHour getHour() {
 		return hour;
 	}
-	public void setHour(String hour) {
+	public void setHour(CustomHour hour) {
 		this.hour = hour;
 	}
-	public String getAirline() {
+    public String getAirline() {
 		return airline;
 	}
 	public void setAirline(String airline) {
 		this.airline = airline;
 	}
-	public int getFlightNumber() {
+	public String getFlightNumber() {
 		return flightNumber;
 	}
-	public void setFlightNumber(int flightNumber) {
+	public void setFlightNumber(String flightNumber) {
 		this.flightNumber = flightNumber;
 	}
 	public String getDestinationCity() {
@@ -57,12 +60,39 @@ public class Flight {
 	public void setDestinationCity(String destinationCity) {
 		this.destinationCity = destinationCity;
 	}
-	public String getGate() {
+	public int getGate() {
 		return gate;
 	}
-	public void setGate(String gate) {
+	public void setGate(int gate) {
 		this.gate = gate;
 	}
 	
+	public String toString() {
+		return airline +" "+ flightNumber +" "+ destinationCity+" " +gate+" "+customDate+" "+hour; 
+				
+		
+	}
+
+
+	@Override
+	public int compareTo(Flight otherFlight) {
+		int comparation;
+		if(customDate.getYear()>otherFlight.getDate().getYear()) {
+			comparation = 1;
+		}else if(customDate.getYear()<otherFlight.getDate().getYear()) {
+			comparation = -1;
+		}else if(customDate.getMonth()>otherFlight.getDate().getMonth()) {
+			comparation = 1;
+		}else if(customDate.getMonth()<otherFlight.getDate().getMonth()) {
+			comparation = -1;
+		}else if(customDate.getDay()>otherFlight.getDate().getDay()) {
+			comparation = 1;
+		}else if(customDate.getDay()<otherFlight.getDate().getDay()) {
+			comparation = -1;
+		}else {
+			comparation = 0;
+		}
+		return comparation;
+	}
 	
 }
