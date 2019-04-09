@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -17,14 +19,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1242.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.Controller">
    <top>
       <AnchorPane prefHeight="84.0" prefWidth="1242.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="date" layoutX="23.0" layoutY="45.0" text="h" textFill="#ffab5c">
+            <Label fx:id="date" layoutX="23.0" layoutY="45.0" textFill="#ffab5c">
                <font>
                   <Font name="GothamRounded-Bold" size="18.0" />
                </font>
@@ -56,31 +56,21 @@
                         <MenuItem mnemonicParsing="false" onAction="#sortByFlightNumber" text="by flightNumber" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
               </menus>
             </MenuBar>
          </children>
       </AnchorPane>
    </top>
    <right>
-      <Pane prefHeight="602.0" prefWidth="362.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="602.0" prefWidth="462.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="88.0" layoutX="24.0" layoutY="-1.0" stroke="WHITE" strokeType="INSIDE" width="313.0" />
-            <Label layoutX="82.0" layoutY="19.0" text="The flights were ordered by:" textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="88.0" layoutX="24.0" layoutY="-1.0" stroke="WHITE" strokeType="INSIDE" width="415.0" />
+            <Label layoutX="149.0" layoutY="3.0" text="The flights were ordered by:" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="typeOfOrder" layoutX="30.0" layoutY="26.0" prefHeight="73.0" prefWidth="299.0" text="HOUR" textFill="WHITE">
+            <Label fx:id="typeOfOrder" layoutX="97.0" layoutY="10.0" prefHeight="73.0" prefWidth="299.0" text="HOUR" textFill="WHITE">
                <font>
                   <Font name="CamingoCode Regular" size="24.0" />
                </font>
@@ -90,30 +80,30 @@
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="timeOrdering" layoutX="311.0" layoutY="89.0" prefHeight="19.0" prefWidth="61.0" text="2 ms" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="timeOrdering" layoutX="378.0" layoutY="90.0" prefHeight="19.0" prefWidth="61.0" text="2 ms" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="CamingoCode Regular" size="12.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="88.0" layoutX="26.0" layoutY="129.0" stroke="WHITE" strokeType="INSIDE" width="313.0" />
-            <Label layoutX="109.0" layoutY="144.0" text="Regenerate flights:" textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="88.0" layoutX="26.0" layoutY="129.0" stroke="WHITE" strokeType="INSIDE" width="414.0" />
+            <Label layoutX="171.0" layoutY="149.0" text="Regenerate flights:" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="flightsNumber" layoutX="50.0" layoutY="167.0" prefHeight="25.0" prefWidth="152.0" promptText="How many?" style="-fx-background-color: WHITE;" />
-            <Button layoutX="227.0" layoutY="167.0" mnemonicParsing="false" onAction="#generate" text="GENERATE">
+            <TextField fx:id="flightsNumber" layoutX="112.0" layoutY="172.0" prefHeight="25.0" prefWidth="152.0" promptText="How many?" style="-fx-background-color: WHITE;" />
+            <Button layoutX="289.0" layoutY="172.0" mnemonicParsing="false" onAction="#generate" text="GENERATE">
                <effect>
                   <InnerShadow color="#090908" />
                </effect>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="260.0" layoutX="21.0" layoutY="237.0" stroke="WHITE" strokeType="INSIDE" width="313.0" />
-            <Label layoutX="129.0" layoutY="248.0" text="Search a flight" textFill="WHITE">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="260.0" layoutX="21.0" layoutY="237.0" stroke="WHITE" strokeType="INSIDE" width="417.0" />
+            <Label layoutX="194.0" layoutY="247.0" text="Search a flight" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBox" layoutX="116.0" layoutY="291.0" prefWidth="150.0" >
+            <ComboBox fx:id="comboBox" layoutX="163.0" layoutY="290.0" prefWidth="150.0">
               <items>
              <FXCollections fx:factory="observableArrayList">
                <String fx:id="Option1" fx:value="by time" />
@@ -126,40 +116,63 @@
             </items>
             </ComboBox>
             
-            <Label layoutX="40.0" layoutY="270.0" text="Please the criteria to search:" textFill="WHITE">
+            <Label layoutX="34.0" layoutY="270.0" text="Please the criteria to search:" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="39.0" layoutY="328.0" text="Please write your flight" textFill="WHITE">
+            <Label layoutX="34.0" layoutY="328.0" prefWidth="419.0" text="Please write your criteria to search ( as same  at the " textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="12.0" />
                </font>
             </Label>
-            <ImageView fitHeight="87.0" fitWidth="314.0" layoutX="21.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="87.0" fitWidth="314.0" layoutX="94.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/marcaPais-01.jpg" />
                </image>
             </ImageView>
-            <TextField fx:id="flightsNumber1" layoutX="53.0" layoutY="350.0" prefHeight="25.0" prefWidth="152.0" promptText="Write your criteria" style="-fx-background-color: WHITE;" />
-            <Button layoutX="230.0" layoutY="350.0" mnemonicParsing="false" onAction="#generate" text="GENERATE">
+            <TextField fx:id="criteria" layoutX="131.0" layoutY="349.0" prefHeight="25.0" prefWidth="152.0" promptText="Write your criteria" style="-fx-background-color: WHITE;" />
+            <Button layoutX="295.0" layoutY="349.0" mnemonicParsing="false" onAction="#search" text="SEARCH">
                <effect>
                   <InnerShadow color="#090908" />
                </effect>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="97.0" layoutX="31.0" layoutY="388.0" stroke="WHITE" strokeType="INSIDE" width="296.0" />
-            <Label layoutX="39.0" layoutY="394.0" text="YOUR FLIGHT: " textFill="WHITE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="97.0" layoutX="31.0" layoutY="388.0" stroke="WHITE" strokeType="INSIDE" width="396.0" />
+            <Label fx:id="searchLb1" layoutX="49.0" layoutY="400.0" text="YOUR FLIGHT: " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font></Label>
+            <Label fx:id="yourFlight" layoutX="49.0" layoutY="437.0" prefHeight="17.0" prefWidth="367.0" textFill="WHITE">
+               <font>
+                  <Font size="11.5" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="343.0" text="the screen )" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="501.0" text="Time searching: " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="timeSearching" layoutX="350.0" layoutY="499.0" prefHeight="19.0" prefWidth="97.0" text="2 ms" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="CamingoCode Regular" size="12.0" />
+               </font>
+            </Label>
          </children></Pane>
    </right>
    <center>
-      <TableView fx:id="tableView" prefHeight="573.0" prefWidth="835.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="602.0" prefWidth="786.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="time" prefWidth="83.19997864961624" text="TIME" />
-          <TableColumn fx:id="airline" prefWidth="177.60000610351562" text="AIRLINE" />
-            <TableColumn fx:id="flight" prefWidth="123.99996948242188" text="FLIGHT" />
-            <TableColumn fx:id="to" prefWidth="168.800048828125" text="TO" />
-            <TableColumn fx:id="term" prefWidth="137.5999755859375" text="GATE" />
-            <TableColumn fx:id="dateT" minWidth="0.0" prefWidth="182.4000244140625" text="DATE" />
+          <TableColumn fx:id="airline" prefWidth="200.80006408691406" text="AIRLINE" />
+            <TableColumn fx:id="flight" prefWidth="84.7999267578125" text="FLIGHT" />
+            <TableColumn fx:id="to" prefWidth="194.4000244140625" text="TO" />
+            <TableColumn fx:id="term" prefWidth="72.79998779296875" text="GATE" />
+            <TableColumn fx:id="dateT" minWidth="0.0" prefWidth="123.20001220703125" text="DATE" />
         </columns>
       </TableView>
    </center>

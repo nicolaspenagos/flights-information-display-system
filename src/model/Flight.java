@@ -68,12 +68,12 @@ public class Flight implements Comparable<Flight>{
 	}
 	
 	public String toString() {
-		return airline +" "+ flightNumber +" "+ destinationCity+" " +gate+" "+customDate+" "+hour; 
+		return hour+" | "+airline +" | "+ flightNumber +" | "+ destinationCity+" | " +gate+" | "+customDate; 
 				
 		
 	}
 
-
+	
 	@Override
 	public int compareTo(Flight otherFlight) {
 		int comparation;

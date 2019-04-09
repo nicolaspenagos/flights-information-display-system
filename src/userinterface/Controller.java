@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import customsExceptions.NoSortedElementsBinarySearchException;
 import customsThreads.GUIUpdateControllThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,11 +30,20 @@ public class Controller {
     private Label typeOfOrder;
     
     @FXML
+    private Label timeSearching;
+    
+    @FXML
     private Label timeOrdering;
+    
+    @FXML
+    private Label yourFlight;
 	
     @FXML
     private ComboBox<String> comboBox;
     
+    @FXML
+    private TextField criteria;
+      
     @FXML
     private Label date;
     
@@ -68,20 +78,11 @@ public class Controller {
     
     @FXML
     public void initialize() {
-    	
-    	
-    	
-    	
-    	
-    	
+    
     	try {
 			airport = new Airport();
 		    airport.sortByFullHour();
 		    oListFlights = updateList(); 
-			
-			for (int i = 0; i < airport.getFlights().length; i++) {
-				System.out.println(airport.getFlights()[i]);
-			}
 			date.setText(airport.getStringHour());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -100,7 +101,6 @@ public class Controller {
     	GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this); 
     	guiThread.setDaemon(true);
     	guiThread.start();
-    	System.out.println(oListFlights.get(0));
     }
     
     @FXML
@@ -135,8 +135,13 @@ public class Controller {
     }
     @FXML
     void generate(ActionEvent event) {
-    	int size = Integer.parseInt(flightsNumber.getText());
-    	airport.generateFlights(size);
+    
+    	try {
+    		int size = Integer.parseInt(flightsNumber.getText());
+    		airport.generateFlights(size);
+    	}catch(NumberFormatException e){
+    		
+    	}
     	airport.sortByFullHour();
     }
     
@@ -154,6 +159,8 @@ public class Controller {
     	date.setText(airport.getStringHour());
     	tableView.setItems(oListFlights);
     	updateList();
+    	timeSearching.setText(airport.getTimeSearching());
+    	yourFlight.setAlignment(Pos.CENTER);
    
     }
 
@@ -161,5 +168,30 @@ public class Controller {
     	Flight[] array = airport.getFlights();
     	List<Flight> list = Arrays.asList(array);
 		return oListFlights = FXCollections.observableArrayList(list);
+    }
+    
+    @FXML
+    void search(ActionEvent event) {
+    	String option = comboBox.getValue();
+    	String cx = String.valueOf(criteria.getText());
+    	if(option.equals("by time")) {
+    		yourFlight.setText(airport.searchByTimeLinearS(cx));
+    	}else if(option.equals("by airline")) {
+    		yourFlight.setText(airport.searchAirlineLinearS(cx));
+    	}else if(option.equals("by flight")) {
+    		yourFlight.setText(airport.searchFlightLinearS(cx));
+    	}else if(option.equals("by destine")) {
+    		yourFlight.setText(airport.searchDestineLinearS(cx));
+    	}else if(option.equals("by gate")) {
+    		try {
+				yourFlight.setText(airport.searchByGateBinaryS(Integer.parseInt(cx)));
+			} catch (NumberFormatException e) {
+				yourFlight.setText("Please enter a number");
+			} catch (NoSortedElementsBinarySearchException e) {
+				yourFlight.setText(e.getMessage());
+			}
+    	}else if(option.equals("by date")) {
+    		yourFlight.setText(airport.searchDateLinearS(cx));
+    	}
     }
 }

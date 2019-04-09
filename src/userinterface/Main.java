@@ -14,7 +14,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("gui15.fxml")); 
+		Parent root = FXMLLoader.load(getClass().getResource("GUI_FLIGHT_SYSTEM.fxml")); 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Salidas/Departures");

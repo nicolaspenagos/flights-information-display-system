@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import customsExceptions.NoSortedElementsBinarySearchException;
+
 public class Airport {
 	
 	public final static String HC = "HOUR - COMPARATOR"; 
@@ -31,6 +33,7 @@ public class Airport {
 	private String[] airlinesId;
 	private String typeOfOrder;
 	private String timeOrdering;
+	private String timeSearching;
 	
 	//------------------------------
 	// Constructor 
@@ -46,6 +49,7 @@ public class Airport {
 		generateFlights(20);
 		typeOfOrder = "";
 		timeOrdering = "";
+		timeSearching = "";
 	}
 	
 	//------------------------------
@@ -181,6 +185,11 @@ public class Airport {
 		timeOrdering = timeT + " ms";
 	}
 	
+	public void calculateTime2(long x, long y, String xx) {
+		long timeT = y-x;
+		setTimeSearching(xx+" "+timeT + " ms");
+	}
+	
 	public void sortByAirlineSelection() {
 		typeOfOrder = AS;
 		long timeX=System.currentTimeMillis();
@@ -211,6 +220,110 @@ public class Airport {
 		calculateTime(timeX, timeY);
 	}
 	
+	public String searchByTimeLinearS(String time) {
+		long timeX = System.currentTimeMillis();
+		Flight fx = null; 
+		for (int i = 0; i < flights.length; i++) {
+			if(time.equalsIgnoreCase(flights[i].getHour().toString())) {
+				fx = flights[i];
+			}
+		}
+		long timeY = System.currentTimeMillis();
+		calculateTime2(timeX, timeY, "(linear)");
+		return printF(fx);
+	}
+	
+	public String searchFlightLinearS(String fn) {
+		Flight fx = null; 
+		long timeX = System.currentTimeMillis();
+		for (int i = 0; i < flights.length; i++) {
+			if(fn.equalsIgnoreCase(flights[i].getFlightNumber())) {
+				fx = flights[i];
+			}
+		}
+		long timeY = System.currentTimeMillis();
+		calculateTime2(timeX, timeY, "(linear)");
+		return printF(fx);
+	}
+	
+	public String searchDateLinearS(String fn) {
+		Flight fx = null; 
+		long timeX = System.currentTimeMillis();
+		for (int i = 0; i < flights.length; i++) {
+			if(fn.equalsIgnoreCase(flights[i].getDate().toString())) {
+				fx = flights[i];
+			}
+		}
+		long timeY = System.currentTimeMillis();
+		calculateTime2(timeX, timeY, "(linear)");
+		return printF(fx);
+	}
+	public String searchAirlineLinearS(String fn) {
+		Flight fx = null; 
+		long timeX = System.currentTimeMillis();
+		for (int i = 0; i < flights.length; i++) {
+			if(fn.equalsIgnoreCase(flights[i].getAirline())) {
+				fx = flights[i];
+			}
+		}
+		long timeY = System.currentTimeMillis();
+		calculateTime2(timeX, timeY, "(linear)");
+		return printF(fx);
+	}
+	
+	public String searchDestineLinearS(String fn) {
+		Flight fx = null; 
+		long timeX = System.currentTimeMillis();
+		for (int i = 0; i < flights.length; i++) {
+			if(fn.equalsIgnoreCase(flights[i].getDestinationCity())) {
+				fx = flights[i];
+			}
+		}
+		long timeY = System.currentTimeMillis();
+		calculateTime2(timeX, timeY, "(linear)");
+		return printF(fx);
+	}
+	
+	public String searchByGateBinaryS(int x) throws NoSortedElementsBinarySearchException{
+			if(typeOfOrder.contentEquals(GB)) {
+				Flight fx = null;
+				long timeX = System.currentTimeMillis();
+				
+				int low = 0;
+				int high = flights.length-1;
+				boolean founded = false;
+				
+				while(low <= high&&!founded) {
+					int mid = (low + high)/2;
+					if(flights[mid].getGate()<x) {
+						low = mid +1;
+					}else if(flights[mid].getGate()>x) {
+						high = mid -1;
+					}else {
+						fx = flights[mid];
+						founded = true;  
+					}
+				}	
+				long timeY = System.currentTimeMillis();
+				calculateTime2(timeX, timeY, "(Binary)");
+				return printF(fx); 
+			}else {
+				throw new NoSortedElementsBinarySearchException();
+			}
+	}
+	
+	
+	
+	public String printF(Flight fx) {
+		String msg = "This flight does not exist";
+		if(fx!=null) {
+			msg = fx.toString();
+		}
+		
+		return msg;
+	}
+	
+	
 	public void sortByFlightNumberInsertion() {
 		typeOfOrder = FNI; 
 		long timeX = System.currentTimeMillis();
@@ -224,6 +337,16 @@ public class Airport {
 		 }
 		long timeY = System.currentTimeMillis();
 		calculateTime(timeX, timeY);	
+	}
+	
+	
+
+	public String getTimeSearching() {
+		return timeSearching;
+	}
+
+	public void setTimeSearching(String timeSearching) {
+		this.timeSearching = timeSearching;
 	}
 }
 
