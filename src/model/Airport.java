@@ -58,11 +58,22 @@ public class Airport {
 	public Flight[] getFlights() {
 		return flights;
 	}
-
+	
+	public String[] getDestines() {
+		return destines;
+	}
+	
+	public String[] getAirlinesId() {
+		return airlinesId;
+	}
+	
+	public String[] getAirlines() {
+		return airlines;
+	}
 	public void setFlights(Flight[] flights) {
 		this.flights = flights;
 	}
-
+	
 	public String getStringHour() {
 		return stringHour;
 	}
@@ -77,6 +88,10 @@ public class Airport {
 	
 	public String getTimeO() {
 		return timeOrdering; 
+	}
+	
+	public void setUS(ArrayList<Integer> x) {
+		usedNumbers = x;
 	}
 	//------------------------------
 	// Methods
@@ -97,8 +112,8 @@ public class Airport {
 		
 		String line = br.readLine(); 
 		while(line != null) {
-			line = br.readLine();
 			list.add(line);
+			line = br.readLine();
 		}
 		
 		String[] array = new String[list.size()]; 
@@ -134,7 +149,7 @@ public class Airport {
 			flights[i]=fx; 
 			
 		}
-		return null;
+		return flights;
 		
 	}
 	
@@ -146,7 +161,7 @@ public class Airport {
 		}
 		return true; 
 	}
-	//Comparae to
+	
 	public void sortByFullHour() {
 		typeOfOrder = HC;
 		long xTime = System.currentTimeMillis();

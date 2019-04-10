@@ -28,9 +28,7 @@ public class CustomHour {
 	}
 	public String toString() {
 		String msg = hour+":"+minutes+" "+format; 
-		if(hour>9) {
-	       msg = ""+hour+":"+minutes+" "+format; 
-		}
+	
 		return msg;	
 	}
 }
