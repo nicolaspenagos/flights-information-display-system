@@ -82,6 +82,14 @@ public class Airport {
 		this.stringHour = stringHour;
 	}
 	
+	public String getTimeSearching() {
+		return timeSearching;
+	}
+
+	public void setTimeSearching(String timeSearching) {
+		this.timeSearching = timeSearching;
+	}
+	
 	public String getTypeO() {
 		return typeOfOrder; 
 	}
@@ -352,16 +360,6 @@ public class Airport {
 		 }
 		long timeY = System.currentTimeMillis();
 		calculateTime(timeX, timeY);	
-	}
-	
-	
-
-	public String getTimeSearching() {
-		return timeSearching;
-	}
-
-	public void setTimeSearching(String timeSearching) {
-		this.timeSearching = timeSearching;
 	}
 }
 

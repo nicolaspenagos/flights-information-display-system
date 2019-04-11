@@ -12,12 +12,16 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+import customsExceptions.NoSortedElementsBinarySearchException;
 import model.Airport;
+import model.CustomDate;
+import model.CustomHour;
 import model.Flight;
 
 class AirportTest {
 	
 	private Airport a1;
+	private Flight f1;
 
 	//-------------------------------------
 	// Scenarios
@@ -35,6 +39,14 @@ class AirportTest {
 			e.printStackTrace();
 		}
 	}
+	
+	public void SetUpScenary3() {
+		f1 = new Flight (new CustomDate(),new CustomHour(), "AVIANCAa", "NEW YORKk", "AF45", 0); 
+	}
+	
+	//-------------------------------------
+	// Scenarios
+	//-------------------------------------
 	
 	@Test 
 	void AirportTest() {
@@ -62,6 +74,17 @@ class AirportTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	void gettersAndSettersTest() {
+		SetUpScenary2();
+		CustomDate datex = new CustomDate();
+		String test = "x";	
+		a1.setStringHour(test);
+		a1.setTimeSearching(test);
+		assertTrue("The hour is no working correctly", a1.getStringHour().equals(test));	
+		assertTrue("The hour is no working correctly", a1.getTimeSearching().equals(test));	
 	}
 	
 	@Test
@@ -151,6 +174,16 @@ class AirportTest {
 	}
 	
 	@Test
+	void sortByFlightNumberInsertionTest() {
+		SetUpScenary2(); 
+		Flight[] array = a1.getFlights();
+		a1.sortByFlightNumberInsertion();
+		for (int i = 0; i < array.length-1; i++) {
+			assertTrue("The array is not oerdered", array[i].getFlightNumber().compareTo(array[i+1].getFlightNumber())<=0);	
+		}
+	}
+	
+	@Test
 	void calculateTime1Test() {
 		SetUpScenary2(); 
 		long x = System.currentTimeMillis();
@@ -167,4 +200,43 @@ class AirportTest {
 		a1.calculateTime2(x, y, "Linear");
 		assertTrue("The time is not good", a1.getTimeSearching().equals("Linear "+(y-x)+" ms"));
 	}
+	
+	@Test 
+	void printFTest() {
+		SetUpScenary3(); 
+		SetUpScenary2();
+		Flight f2 = null;
+
+		assertTrue("The method is not working correctly", a1.printF(f1).equals(f1.toString()));
+		assertTrue("The method is not working correctly", a1.printF(f2).equals("This flight does not exist"));
+	}
+	
+	@Test
+	void linearSTests() {
+		SetUpScenary2();
+		SetUpScenary3();
+		a1.getFlights()[0]=f1;
+	
+		assertTrue("The method is not working correctly", a1.searchAirlineLinearS("AVIANCAa").equals(f1.toString()));
+		assertTrue("The method is not working correctly", a1.searchByTimeLinearS(f1.getHour().toString()).equals(f1.toString()));
+		assertTrue("The method is not working correctly", a1.searchDateLinearS(f1.getDate().toString()).equals(f1.toString()));
+		assertTrue("The method is not working correctly", a1.searchDestineLinearS("NEW YORKk").equals(f1.toString()));
+		assertTrue("The method is not working correctly", a1.searchFlightLinearS("AF45").equals(f1.toString()));
+		
+	}
+	
+	@Test
+	void binarySearchTest() {
+		SetUpScenary2();
+		SetUpScenary3();
+		a1.getFlights()[0]=f1;
+		a1.sortByGateBubble();
+		try {
+			assertTrue("The method is not working correctly", a1.searchByGateBinaryS(0).equals(f1.toString()));
+		} catch (NoSortedElementsBinarySearchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
