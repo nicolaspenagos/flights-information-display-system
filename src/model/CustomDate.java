@@ -13,6 +13,13 @@ public class CustomDate {
 		
 	}
 	
+	public CustomDate(int y, int m, int d) {
+		year = y;
+		month = m;
+		day = d;
+		
+	}
+	
 	public String toString() {
 		return year+"/"+month+"/"+day;	
 	}

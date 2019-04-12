@@ -17,6 +17,7 @@ public class Flight implements Comparable<Flight>{
 	//------------------------------
 	// Constructor 
 	//------------------------------
+	
 	public Flight(CustomDate customDate, CustomHour hour, String airline, String destinationCity, String flightNumber, int gate) {
 		this.customDate      = customDate;
 		this.hour            = hour;

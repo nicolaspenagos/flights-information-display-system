@@ -15,6 +15,12 @@ public class CustomHour {
 		format = (Math.random()<0.50)?this.AM:this.PM; 
 	}
 	
+	public CustomHour(int m, int h, String f) {
+		minutes = m;
+		hour = h;
+		format = f;
+	}
+	
 	public String getFormat() {
 		return format; 
 	}

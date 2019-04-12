@@ -3,6 +3,10 @@ package model;
 import java.util.Comparator;
 
 public class DestineComparator implements Comparator <Flight>{
+	
+	public DestineComparator() {
+		
+	}
 
 	@Override
 	public int compare(Flight flight1, Flight flight2) {

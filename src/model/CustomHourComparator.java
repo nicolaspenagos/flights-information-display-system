@@ -3,6 +3,10 @@ package model;
 import java.util.Comparator;
 
 public class CustomHourComparator implements Comparator<Flight>{
+	
+	public CustomHourComparator() {
+		
+	}
 
 	@Override
 	public int compare(Flight f1, Flight f2) {
