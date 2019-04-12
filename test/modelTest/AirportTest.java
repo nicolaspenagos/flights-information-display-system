@@ -44,9 +44,6 @@ class AirportTest {
 		f1 = new Flight (new CustomDate(),new CustomHour(), "AVIANCAa", "NEW YORKk", "AF45", 0); 
 	}
 	
-	//-------------------------------------
-	// Test
-	//-------------------------------------
 	
 	@Test 
 	void AirportTest() {

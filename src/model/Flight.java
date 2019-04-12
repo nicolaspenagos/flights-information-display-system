@@ -68,6 +68,11 @@ public class Flight implements Comparable<Flight>{
 		this.gate = gate;
 	}
 	
+
+	//------------------------------
+	// Methods 
+	//------------------------------
+	
 	public String toString() {
 		return hour+" | "+airline +" | "+ flightNumber +" | "+ destinationCity+" | " +gate+" | "+customDate; 
 				
